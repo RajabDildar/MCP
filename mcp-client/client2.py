@@ -6,7 +6,7 @@ import asyncio
 import streamlit as st
 from dotenv import load_dotenv
 
-from langchain_openai import ChatOpenAI
+from langchain_groq import ChatGroq
 from langchain_mcp_adapters.client import MultiServerMCPClient
 from langchain_core.messages import HumanMessage, AIMessage, ToolMessage, SystemMessage
 
@@ -44,7 +44,7 @@ load_dotenv()
 # One-time init
 if "initialized" not in st.session_state:
     # 1) LLM
-    st.session_state.llm = ChatOpenAI(model="gpt-5")
+    st.session_state.llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0)
 
     # 2) MCP tools
     st.session_state.client = MultiServerMCPClient(SERVERS)
